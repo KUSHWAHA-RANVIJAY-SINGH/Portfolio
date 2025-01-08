@@ -1,6 +1,7 @@
 import React from "react";
 
-import pic from "../assets/photo.jpg";
+import pic from "../assets/Photo.jpg";
+
 import pdf from "../assets/Your_Resume.pdf";
 import { FaGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
