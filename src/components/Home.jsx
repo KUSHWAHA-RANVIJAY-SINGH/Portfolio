@@ -1,7 +1,7 @@
 import React from "react";
 
 import pic from "../assets/photo.jpg";
-
+import pdf from "../assets/Your_Resume.pdf";
 import { FaGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
@@ -93,8 +93,8 @@ function Home() {
   <span className="font-bold text-lg">Resume Download</span>
   <div className="mt-2">
     <a
-      href="./assets/resume.pdf"
-      download="Your_Resume.pdf"
+      href={pdf}
+      download="Resume.pdf"
       className="flex w-56 ml-[200px] mt-4 m-auto items-center gap-2 px-4 py-2 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-300 focus:outline-none transition"
     >
       <IoMdDownload className="text-xl" />
