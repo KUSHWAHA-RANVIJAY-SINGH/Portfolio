@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import pic from "../assets/ranvijay.jpg";
+import ThemeToggle from "./ThemeToggle";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
@@ -7,33 +8,57 @@ import { Link } from "react-scroll";
 
 function Navbar() {
   const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const navItems = [
     { id: 1, text: "Home" },
     { id: 2, text: "About" },
     { id: 3, text: "Portfolio" },
-    { id: 4, text: "Contact" },
+    { id: 4, text: "Certificate" }, 
+    { id: 5, text: "Contact" },
   ];
 
   return (
     <>
       {/* Navbar Container */}
-      <div className=" navbar max-w-screen-2xl container mx-auto px-4 md:px-20 h-16 shadow-md fixed top-0 left-0 right-0 z-50 bg-white">
+      <div
+        className={`max-w-screen-2xl container mx-auto px-4 md:px-20 h-16 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? "bg-white dark:bg-slate-700 shadow-md dark:shadow-slate-900/20" 
+            : "bg-transparent"
+        }`}
+      >
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
-          <div className="flex space-x-2 items-center">
+          <div className="flex space-x-2 items-center gap-2">
             <img src={pic} className="h-12 w-12 rounded-full" alt="Logo" />
-            <h1 className="font-semibold text-xl cursor-pointer">
-              Ranvija<span className="text-green-500 text-2xl">y</span>
-              <p className="text-sm">Web Developer</p>
+            <h1 className="font-semibold text-2xl cursor-pointer text-gray-900 dark:text-white">
+              Ranvijay<span className="text-slate-400 dark:text-slate-300 text-xl">     Singh</span>
+              <p className="text-sm text-gray-600 dark:text-slate-300">Web Developer</p>
             </h1>
           </div>
 
           {/* Desktop Navbar */}
-          <div>
+          <div className="flex items-center space-x-6">
             <ul className="hidden md:flex space-x-8">
               {navItems.map(({ id, text }) => (
                 <li
-                  className="hover:scale-105 duration-200 cursor-pointer"
+                  className="hover:scale-105 duration-200 cursor-pointer text-gray-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400"
                   key={id}
                 >
                   <Link
@@ -41,7 +66,7 @@ function Navbar() {
                     smooth={true}
                     duration={500}
                     offset={-70}
-                    activeClass="text-blue-500 font-bold border-b-2 border-blue-500"
+                    activeClass="text-blue-500 dark:text-blue-400 font-bold border-b-2 border-blue-500 dark:border-blue-400 "
                   >
                     {text}
                   </Link>
@@ -49,8 +74,13 @@ function Navbar() {
               ))}
             </ul>
 
+            {/* Theme Toggle */}
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
+
             {/* Mobile Menu Icon */}
-            <div onClick={() => setMenu(!menu)} className="md:hidden cursor-pointer">
+            <div onClick={() => setMenu(!menu)} className="md:hidden cursor-pointer text-gray-700 dark:text-slate-300">
               {menu ? <IoCloseSharp size={24} /> : <AiOutlineMenu size={24} />}
             </div>
           </div>
@@ -58,11 +88,14 @@ function Navbar() {
 
         {/* Mobile Navbar */}
         {menu && (
-          <div className="bg-white">
-            <ul className="md:hidden flex flex-col h-screen items-center justify-center space-y-3 text-xl">
+          <div className="md:hidden bg-white dark:bg-slate-700 shadow-lg dark:shadow-slate-900/20">
+            <div className="flex justify-center py-4">
+              <ThemeToggle />
+            </div>
+            <ul className="flex flex-col items-center justify-center space-y-3 text-xl pb-6">
               {navItems.map(({ id, text }) => (
                 <li
-                  className="hover:scale-105 duration-200 font-semibold cursor-pointer"
+                  className="hover:scale-105 duration-200 font-semibold cursor-pointer text-gray-700 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400"
                   key={id}
                 >
                   <Link
@@ -71,7 +104,7 @@ function Navbar() {
                     smooth={true}
                     duration={500}
                     offset={-70}
-                    activeClass="text-blue-500 font-bold"
+                    activeClass="text-blue-500 dark:text-blue-400 font-bold"
                   >
                     {text}
                   </Link>

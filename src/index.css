@@ -3,12 +3,136 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0%;
-  padding: 0%;
+/* CSS Variables for theme-aware components */
+:root {
+  --toast-bg: #ffffff;
+  --toast-color: #1a202c;
+  --color-bg: #232323;
+  --color-navbar: #2d2d2d;
+  --color-accent: #ff7f32;
+  --color-text-main: #fff;
+  --color-text-secondary: #bdbdbd;
 }
 
-.navbar{
+.dark {
+  --toast-bg: #475569; /* slate-600 */
+  --toast-color: #ffffff;
+}
+
+/* Base styles with theme support */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+}
+
+/* Light mode (default) */
+body {
+  background: #f0f2f5;
+  color: #1a202c;
+}
+
+/* Dark mode */
+.dark body {
+  background: #475569; /* slate-600 */
+  color: #ffffff;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode specific styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark * {
+  border-color: #64748b; /* slate-500 for borders */
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #334155; /* slate-700 */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #64748b; /* slate-500 */
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}
+
+/* Light mode scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
+}
+
+/* Theme-aware utility classes */
+.theme-bg {
+  @apply bg-white dark:bg-slate-600;
+}
+
+.theme-text {
+  @apply text-gray-900 dark:text-white;
+}
+
+.theme-border {
+  @apply border-gray-200 dark:border-slate-500;
+}
+
+.theme-card {
+  @apply bg-white dark:bg-slate-700 shadow-lg dark:shadow-slate-900/20;
+}
+
+/* Remove the specific navbar background color to allow for dynamic styling */
+/* .navbar {
   background-color: rgb(17, 140, 119);
+} */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-main);
+}
+
+a {
+  color: var(--color-text-main);
+  text-decoration: none;
 }
