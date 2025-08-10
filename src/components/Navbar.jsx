@@ -28,8 +28,8 @@ function Navbar() {
   const navItems = [
     { id: 1, text: "Home" },
     { id: 2, text: "About" },
-    { id: 3, text: "Portfolio" },
-    { id: 4, text: "Certificate" }, 
+    { id: 3, text: "Project" },
+    { id: 4, text: "Certificate" },
     { id: 5, text: "Contact" },
   ];
 
@@ -37,11 +37,10 @@ function Navbar() {
     <>
       {/* Navbar Container */}
       <div
-        className={`max-w-screen-2xl container mx-auto px-4 md:px-20 h-16 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled 
-            ? "bg-white dark:bg-slate-700 shadow-md dark:shadow-slate-900/20" 
+        className={`max-w-screen-2xl container mx-auto px-4 md:px-20 h-16 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+            ? "bg-white dark:bg-slate-700 shadow-md dark:shadow-slate-900/20"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
