@@ -5,9 +5,18 @@ import react from "../assets/reactjs.png";
 import Review from "../assets/Code_Review.png";
 import Inventory from "../assets/Inventory.png";
 import Vehicle_logo from "../assets/Vehicle.png";
+import Utsavmate from "../assets/utsavmate-logo.png";
 
 function Project() {
   const cardItem = [
+    {
+      id: 0,
+      logo: Utsavmate,
+      title: "UtsavMate (Wedding Marketplace)",
+      description: "UtsavMate is a scalable digital wedding marketplace built using the MERN stack (MongoDB, Express, React/Next.js, Node.js). It is designed to connect users directly with local wedding vendors like decorators, photographers, and event planners. Key features include dynamic vendor dashboards, portfolio management with AWS S3 integration, real-time lead tracking, and role-based admin controls. The platform focuses on high performance, responsive design, and an intuitive user experience for both vendors and customers.",
+      Live_link: "https://utsavmate.in/",
+      liveLabel: "Visit Website"
+    },
     {
       id: 1,
       logo: Logo,
@@ -21,7 +30,8 @@ function Project() {
       logo: Vehicle_logo,
       title: "Vehicle Rental System",
       description: 'Vehicle Rental System is a MERN stack application designed to facilitate the rental of vehicles through an intuitive web platform. It features user registration, vehicle listings, booking management, and payment processing. The system allows users to easily browse available vehicles, make reservations, and manage their rentals, while providing administrators with tools to oversee operations and maintain the fleet efficiently.',
-      github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/Vehicle-Rental-System'
+      github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/Vehicle-Rental-System',
+      Live_link: 'https://vehicle-rental-system-wheat-six.vercel.app/'
     },
     {
       id: 3,
@@ -46,20 +56,6 @@ function Project() {
       description: "A suite of 20+ React.js projects exploring components, state, hooks, and UI design—built to sharpen frontend skills through real-world practice.",
       github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/React-js'
     },
-    // {
-    //   id: 5,
-    //   logo: mongo,
-    //   title: "MongoDB",
-    //   description: 'MongoDB Application.',
-    //   github : 'https://github.com/yourusername/mongodb-app'
-    // },
-    // {
-    //   id: 6,
-    //   logo: express,
-    //   title: "Express",
-    //   description: 'Express Application.',
-    //   github : 'https://github.com/yourusername/express-app'
-    // },  
   ];
 
   return (
@@ -70,7 +66,7 @@ function Project() {
           {/* Featured Projects */}
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-8">
-          {cardItem.map(({ id, logo, title, description, github, Live_link, live, live_link }) => {
+          {cardItem.map(({ id, logo, title, description, github, Live_link, live, live_link, liveLabel }) => {
             const liveLink = Live_link || live || live_link;
             return (
               <div
@@ -89,14 +85,16 @@ function Project() {
                   </p>
                 </div>
                 <div className="mt-auto flex flex-col gap-2 w-full items-center">
-                  <a
-                    href={github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded inline-block"
-                  >
-                    Source Code
-                  </a>
+                  {github && (
+                    <a
+                      href={github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded inline-block"
+                    >
+                      Source Code
+                    </a>
+                  )}
                   {liveLink && (
                     <a
                       href={liveLink}
@@ -104,7 +102,7 @@ function Project() {
                       rel="noopener noreferrer"
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded inline-block"
                     >
-                      Live
+                      {liveLabel || "Live"}
                     </a>
                   )}
                 </div>
