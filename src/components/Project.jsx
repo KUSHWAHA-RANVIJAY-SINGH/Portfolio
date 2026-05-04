@@ -1,115 +1,230 @@
 import React from "react";
 import Logo from "../assets/Logo.webp";
-import react from "../assets/reactjs.png";
-
-import Review from "../assets/Code_Review.png";
 import Inventory from "../assets/Inventory.png";
 import Vehicle_logo from "../assets/Vehicle.png";
 import Utsavmate from "../assets/utsavmate-logo.png";
 
+/* ─── Tech-chip definitions ───────────────────────────────────── */
+const T = {
+  mern:    ["React", "Node.js", "Express.js", "MongoDB", "REST API", "Tailwind CSS"],
+  chat:    ["React", "Node.js", "Express.js", "MongoDB", "Socket.io", "REST API"],
+  vehicle: ["React", "Node.js", "Express.js", "MongoDB", "REST API", "Tailwind CSS"],
+  inventory:["React", "Node.js", "Express.js", "MongoDB", "REST API", "Tailwind CSS"],
+  gym:     ["React", "Node.js", "MongoDB", "REST API", "Tailwind CSS"],
+  laptop:  ["React", "Next.js", "Node.js", "MongoDB", "REST API", "Tailwind CSS"],
+};
+
+/* ─── Inline SVG logo placeholders for new projects ──────────── */
+const GymLogo = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <circle cx="40" cy="40" r="40" fill="#1a1a2e"/>
+    <rect x="10" y="36" width="12" height="8" rx="4" fill="#ff7a18"/>
+    <rect x="58" y="36" width="12" height="8" rx="4" fill="#ff7a18"/>
+    <rect x="20" y="30" width="8" height="20" rx="3" fill="#ff9944"/>
+    <rect x="52" y="30" width="8" height="20" rx="3" fill="#ff9944"/>
+    <rect x="28" y="38" width="24" height="4" rx="2" fill="#ffffff"/>
+  </svg>
+);
+
+const LaptopLogo = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <circle cx="40" cy="40" r="40" fill="#0f172a"/>
+    <rect x="16" y="22" width="48" height="30" rx="4" fill="#1e40af"/>
+    <rect x="20" y="26" width="40" height="22" rx="2" fill="#93c5fd"/>
+    <rect x="10" y="53" width="60" height="5" rx="2.5" fill="#334155"/>
+    <rect x="28" y="51" width="24" height="3" rx="1.5" fill="#64748b"/>
+    <circle cx="40" cy="37" r="5" fill="#1e40af"/>
+    <path d="M37 37 L40 34 L43 37 L40 40 Z" fill="#93c5fd"/>
+  </svg>
+);
+
+/* ─── Chip list component ─────────────────────────────────────── */
+const ChipList = ({ chips }) => (
+  <div className="flex flex-wrap gap-2 justify-center mb-4">
+    {chips.map((chip) => (
+      <span
+        key={chip}
+        className="text-xs font-semibold px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 border border-orange-300 dark:border-orange-700"
+      >
+        {chip}
+      </span>
+    ))}
+  </div>
+);
+
+/* ─── Logo renderer ───────────────────────────────────────────── */
+const ProjectLogo = ({ logo, SvgComponent, title }) => (
+  <div className="w-20 h-20 mb-4 rounded-full border-2 border-orange-300 dark:border-orange-600 overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-slate-800 flex-shrink-0">
+    {SvgComponent
+      ? <SvgComponent />
+      : <img src={logo} alt={title} className="w-full h-full object-cover" />
+    }
+  </div>
+);
+
+/* ─── Project data ────────────────────────────────────────────── */
 function Project() {
   const cardItem = [
+    /* 1 ── UtsavMate */
     {
       id: 0,
       logo: Utsavmate,
       title: "UtsavMate (Wedding Marketplace)",
-      description: "UtsavMate is a scalable digital wedding marketplace built using the MERN stack (MongoDB, Express, React/Next.js, Node.js). It is designed to connect users directly with local wedding vendors like decorators, photographers, and event planners. Key features include dynamic vendor dashboards, portfolio management with AWS S3 integration, real-time lead tracking, and role-based admin controls. The platform focuses on high performance, responsive design, and an intuitive user experience for both vendors and customers.",
+      chips: T.mern,
+      bullets: [
+        "Scalable digital wedding marketplace built with MERN stack",
+        "Connects users with local vendors: decorators, photographers, event planners",
+        "Dynamic vendor dashboards with portfolio management & AWS S3 integration",
+        "Real-time lead tracking and role-based admin controls",
+        "Responsive design focused on performance and UX",
+      ],
       Live_link: "https://utsavmate.in/",
-      liveLabel: "Visit Website"
     },
+
+    /* 2 ── Gym Management Website */
     {
       id: 1,
-      logo: Logo,
-      title: "Real Time Chat Application",
-      description: 'Real Time Chat Application is a MERN stack project that enables users to communicate instantly through a modern web interface. It features real-time messaging, user authentication, and responsive design, providing a seamless chat experience. The application leverages WebSocket technology for live updates and supports secure, scalable conversations for individuals or groups.',
-      github: "https://github.com/KUSHWAHA-RANVIJAY-SINGH/Real_Time_Chat_Application"
-
+      SvgLogo: GymLogo,
+      title: "Gym Management Website",
+      chips: T.gym,
+      bullets: [
+        "Built a premium gym website with lead-generation focused landing pages",
+        "Designed sections for memberships, gallery, and trainer showcase",
+        "Added WhatsApp-based inquiry flow for direct client leads",
+        "Created a clean, responsive UI tailored for gym owners",
+      ],
+      Live_link: "https://gymdemo.hitechcrest.com/",
     },
+
+    /* 3 ── Laptop E-commerce Platform */
     {
       id: 2,
-      logo: Vehicle_logo,
-      title: "Vehicle Rental System",
-      description: 'Vehicle Rental System is a MERN stack application designed to facilitate the rental of vehicles through an intuitive web platform. It features user registration, vehicle listings, booking management, and payment processing. The system allows users to easily browse available vehicles, make reservations, and manage their rentals, while providing administrators with tools to oversee operations and maintain the fleet efficiently.',
-      github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/Vehicle-Rental-System',
-      Live_link: 'https://vehicle-rental-system-wheat-six.vercel.app/'
+      SvgLogo: LaptopLogo,
+      title: "Laptop E-commerce Platform",
+      chips: T.laptop,
+      bullets: [
+        "Built a modern laptop e-commerce platform with product listing and cart",
+        "Implemented filtering, responsive UI, and smooth user experience",
+        "Designed for small businesses to sell products online",
+        "Created structured layout for scalability and future admin features",
+      ],
+      Live_link: "https://demo.hitechcrest.com/",
     },
+
+    /* 4 ── Vehicle Rental System */
     {
       id: 3,
-      logo: Inventory,
-      title: "Inventory Management System",
-      description: 'Inventory Management System is a comprehensive MERN stack application designed to streamline and optimize inventory tracking and management for businesses. It features real-time stock updates, product categorization, supplier management, and detailed reporting. The system provides an intuitive user interface for easy navigation and efficient handling of inventory tasks, enhancing overall operational efficiency.',
-      github: 'https://gitlab.com/ce_major/inventorymanagement',
-      Live_link: 'https://invsys-frontend.vercel.app/'
+      logo: Vehicle_logo,
+      title: "Vehicle Rental System",
+      chips: T.vehicle,
+      bullets: [
+        "Full-stack vehicle rental platform with intuitive UI",
+        "User registration, vehicle listings & booking management",
+        "Admin panel to oversee operations and manage fleet",
+        "Integrated payment flow and rental history tracking",
+        "Deployed on Vercel with REST API backend",
+      ],
+      github: "https://github.com/KUSHWAHA-RANVIJAY-SINGH/Vehicle-Rental-System",
+      Live_link: "https://vehicle-rental-system-wheat-six.vercel.app/",
     },
+
+    /* 5 ── Inventory Management System */
     {
       id: 4,
-      logo: Review,
-      title: "AI Code Review Tool",
-      description: "AI Code Review Tool is a MERN stack application designed to automate and enhance the code review process. It features a user-friendly interface for submitting code, real-time syntax highlighting, and side-by-side comparison of original and improved code. The tool leverages AI to provide instant feedback, suggest best practices, and help developers improve code quality efficiently.",
-      github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/AI-Code-Reviewer',
-      Live_link: 'https://ai-code-reviewer-r37.vercel.app/'
+      logo: Inventory,
+      title: "Inventory Management System",
+      chips: T.inventory,
+      bullets: [
+        "Comprehensive inventory tracking & management platform",
+        "Real-time stock updates and product categorization",
+        "Supplier management with detailed reporting dashboard",
+        "Role-based access control for staff & admins",
+        "Deployed frontend on Vercel, backend on Render",
+      ],
+      github: "https://gitlab.com/ce_major/inventorymanagement",
+      Live_link: "https://invsys-frontend.vercel.app/",
     },
+
+    /* 6 ── Real Time Chat Application */
     {
       id: 5,
-      logo: react,
-      title: "React-js Project",
-      description: "A suite of 20+ React.js projects exploring components, state, hooks, and UI design—built to sharpen frontend skills through real-world practice.",
-      github: 'https://github.com/KUSHWAHA-RANVIJAY-SINGH/React-js'
+      logo: Logo,
+      title: "Real Time Chat Application",
+      chips: T.chat,
+      bullets: [
+        "Real-time messaging using WebSocket (Socket.io)",
+        "Secure user authentication with JWT",
+        "Individual and group chat support",
+        "Responsive modern UI built with React",
+        "Scalable MERN architecture for live updates",
+      ],
+      github: "https://github.com/KUSHWAHA-RANVIJAY-SINGH/Real_Time_Chat_Application",
     },
   ];
 
   return (
-    <div name='Project' className="max-w-screen-2xl container mx-auto px-4 sm:px-6 md:px-12 my-16">
-      <div>
-        <h1 className="text-3xl font-bold text-center mb-5 text-gray-900 dark:text-white">Project</h1>
-        <span className="block text-center underline font-semibold text-lg text-gray-800 dark:text-slate-300">
-          {/* Featured Projects */}
-        </span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 my-8">
-          {cardItem.map(({ id, logo, title, description, github, Live_link, live, live_link, liveLabel }) => {
-            const liveLink = Live_link || live || live_link;
-            return (
-              <div
-                className="project-card w-full border-2 border-gray-200 dark:border-slate-600 rounded-lg shadow-lg p-4 flex flex-col items-center text-center hover:scale-105 transition-transform duration-300 bg-white dark:bg-slate-700 h-full"
-                key={id}
-              >
-                <img
-                  src={logo}
-                  className="w-24 h-24 mb-4 rounded-full border-2 border-gray-200 dark:border-slate-500"
-                  alt={title}
-                />
-                <div className="project-details flex-grow">
-                  <h2 className="font-bold text-lg mb-2 text-gray-900 dark:text-white">{title}</h2>
-                  <p className="project-desc text-gray-700 dark:text-slate-300 mb-4 text-left" style={{ fontSize: '1.05rem', lineHeight: '1.8', padding: '0 10px', letterSpacing: '0.01em', wordSpacing: '0.05em' }}>
-                    {description}
-                  </p>
-                </div>
-                <div className="mt-auto flex flex-col gap-2 w-full items-center">
-                  {github && (
-                    <a
-                      href={github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded inline-block"
-                    >
-                      Source Code
-                    </a>
-                  )}
-                  {liveLink && (
-                    <a
-                      href={liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded inline-block"
-                    >
-                      {liveLabel || "Live"}
-                    </a>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <div name="Project" id="Project" className="max-w-screen-2xl container mx-auto px-4 sm:px-6 md:px-12 my-16">
+      {/* Section Header */}
+      <h1 className="text-3xl font-bold text-center mb-2 text-gray-900 dark:text-white">
+        Projects
+      </h1>
+      <p className="text-center text-gray-500 dark:text-slate-400 mb-8 text-sm sm:text-base">
+        Real-world applications built end-to-end
+      </p>
+
+      {/* Project Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 my-8">
+        {cardItem.map(({ id, logo, SvgLogo, title, bullets, chips, github, Live_link }) => (
+          <div
+            key={id}
+            className="group project-card w-full border-2 border-gray-200 dark:border-slate-600 rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 ease-out bg-white dark:bg-slate-700 h-full cursor-default"
+          >
+            {/* Logo */}
+            <ProjectLogo logo={logo} SvgComponent={SvgLogo} title={title} />
+
+            {/* Title */}
+            <h2 className="font-bold text-lg mb-3 text-gray-900 dark:text-white leading-snug">
+              {title}
+            </h2>
+
+            {/* Tech Chips */}
+            <ChipList chips={chips} />
+
+            {/* Bullet Points */}
+            <ul className="text-left text-sm text-gray-700 dark:text-slate-300 space-y-1.5 mb-5 w-full px-2 flex-grow">
+              {bullets.map((point, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-orange-500 mt-0.5 flex-shrink-0">▸</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Action Buttons */}
+            <div className="mt-auto flex flex-row flex-wrap gap-3 w-full justify-center">
+              {Live_link && (
+                <a
+                  href={Live_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-orange-glow text-white font-bold px-5 py-2 rounded-xl text-sm flex items-center gap-1.5"
+                >
+                  🌐 Live Demo
+                </a>
+              )}
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline-orange text-gray-800 dark:text-white font-bold px-5 py-2 rounded-xl text-sm flex items-center gap-1.5"
+                >
+                  &lt;/&gt; Source Code
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

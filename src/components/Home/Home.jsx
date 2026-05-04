@@ -1,59 +1,94 @@
 import React from "react";
 import { IoMdDownload } from "react-icons/io";
 import { ReactTyped } from "react-typed";
+import { FaProjectDiagram, FaLayerGroup, FaCode } from "react-icons/fa";
 import resumePDF from '../../assets/Your_Resume.pdf';
 import developer from '../../assets/Side_img.png';
+
+const highlights = [
+  { icon: <FaProjectDiagram className="text-orange-400 text-2xl flex-shrink-0" />, text: "3+ Production-ready Projects" },
+  { icon: <FaLayerGroup        className="text-orange-400 text-2xl flex-shrink-0" />, text: "Marketplace, Booking & Admin Systems" },
+  { icon: <FaCode              className="text-orange-400 text-2xl flex-shrink-0" />, text: "React · Node.js · MongoDB · Express" },
+];
 
 function Home() {
   return (
     <section
       id="Home"
-      className="min-h-screen flex flex-col md:flex-row items-center justify-center px-2 sm:px-4 md:px-10 lg:px-20 py-8 gap-8"
+      className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-10 lg:px-20 py-8 gap-10"
     >
-      {/* Left Side */}
-      <div className="flex-1 flex flex-col justify-center items-start text-left space-y-4 max-w-full md:max-w-2xl w-full">
-        <span className="text-lg sm:text-xl text-gray-600 dark:text-gray-300">Hello, I'm</span>
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-black dark:text-white leading-tight">
-          Ranvijay Singh
+      {/* ── Left ───────────────────────────────────────── */}
+      <div className="flex-1 flex flex-col justify-center items-start text-left space-y-5 max-w-full md:max-w-2xl w-full">
+
+        <span className="text-base sm:text-lg text-gray-500 dark:text-gray-400 font-medium tracking-wide">
+          👋 Hello, I'm
+        </span>
+
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight">
+          Ranvijay<br />
+          <span className="text-orange-500">Singh</span>
         </h1>
-        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500 flex items-center">
+
+        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500 flex items-center min-h-[2.5rem]">
           <ReactTyped
-            className="mr-2"
-            strings={["A Full-stack Developer"]}
-            typeSpeed={60}
-            backSpeed={40}
-            backDelay={2000}
+            strings={["Full Stack MERN Developer", "React + Node.js Engineer", "Building Scalable Apps"]}
+            typeSpeed={55}
+            backSpeed={35}
+            backDelay={1800}
             loop
           />
         </div>
-        <p className="text-sm sm:text-md md:text-lg text-gray-700 dark:text-gray-300 max-w-xl text-justify">
-          As a MERN stack developer, I am committed to building high-quality web applications that meet the needs of my clients. With years of experience in full-stack web development, I specialize in using React.js, Node.js, Express.js, and MongoDB to create scalable and robust web applications.
+
+        <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
+          Building real-world scalable applications — from elegant UIs to robust APIs.
         </p>
+
+        {/* ── Highlight chips ─────────────────────────── */}
+        <div className="flex flex-col gap-2.5 w-full pt-1">
+          {highlights.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-center gap-3 bg-white dark:bg-slate-800/80 border border-orange-100 dark:border-slate-700 rounded-xl px-4 py-2.5 shadow-sm hover:shadow-md hover:border-orange-400 dark:hover:border-orange-600 transition-all duration-200"
+            >
+              {item.icon}
+              <span className="text-sm sm:text-base text-gray-700 dark:text-slate-200 font-medium">
+                {item.text}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* ── CTA Buttons ─────────────────────────────── */}
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full">
+          {/* Orange glow resume button */}
           <a
             href={resumePDF}
             target="_blank"
             rel="noopener noreferrer"
             download="Ranvijay_Singh_Resume.pdf"
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-md w-full sm:w-auto"
+            className="btn-orange-glow text-white font-bold py-3 px-7 rounded-xl flex items-center justify-center gap-2 w-full sm:w-auto"
           >
             MY RESUME <IoMdDownload className="text-xl" />
           </a>
+
+          {/* Outline button */}
           <a
             href="#About"
-            className="border-2 border-orange-500 text-black dark:text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-orange-500 hover:text-white transition-all duration-200 shadow-md w-full sm:w-auto"
+            className="btn-outline-orange font-bold py-3 px-7 rounded-xl flex items-center justify-center gap-2 text-gray-900 dark:text-white w-full sm:w-auto"
           >
             ABOUT ME
           </a>
         </div>
       </div>
-      {/* Right Side */}
-      <div className="flex-1 flex justify-center items-center mt-8 md:mt-0 w-full">
+
+      {/* ── Right (Illustration) ───────────────────────── */}
+      <div className="flex-1 flex justify-center items-center mt-4 md:mt-0 w-full">
         <img
           src={developer}
-          alt="Developer Illustration"
-          className="w-60 sm:w-80 md:w-[350px] lg:w-[450px] h-auto object-contain"
-          style={{ filter: 'drop-shadow(0 0 20px #ff6600aa)' }}
+          alt="Full Stack Developer Illustration"
+          className="w-64 sm:w-80 md:w-[360px] lg:w-[460px] h-auto object-contain select-none"
+          style={{ filter: 'drop-shadow(0 0 28px #ff7a18aa)' }}
+          draggable={false}
         />
       </div>
     </section>

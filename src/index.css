@@ -1,138 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables for theme-aware components */
+/* ─── CSS Variables ─────────────────────────────────── */
 :root {
   --toast-bg: #ffffff;
   --toast-color: #1a202c;
-  --color-bg: #232323;
-  --color-navbar: #2d2d2d;
-  --color-accent: #ff7f32;
-  --color-text-main: #fff;
-  --color-text-secondary: #bdbdbd;
+  --color-accent: #ff7a18;
+  --color-accent-glow: rgba(255, 122, 24, 0.45);
+  --transition-base: 0.3s ease-in-out;
 }
 
 .dark {
-  --toast-bg: #475569; /* slate-600 */
+  --toast-bg: #1e293b;
   --toast-color: #ffffff;
 }
 
-/* Base styles with theme support */
+/* ─── Base Reset ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* IMPORTANT: Only transition color-related props globally.
+   Never include transform/opacity here — it breaks hover animations. */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  background: var(--color-bg);
-  color: var(--color-text-main);
-}
-
-/* Light mode (default) */
-body {
-  background: #f0f2f5;
+  background: #f3f4f6;
   color: #1a202c;
+  transition: background-color var(--transition-base), color var(--transition-base);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Dark mode */
 .dark body {
-  background: #475569; /* slate-600 */
-  color: #ffffff;
+  background: #0f172a;
+  color: #f1f5f9;
 }
 
-/* Smooth transitions for all elements */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* ─── Smooth theme transitions (targeted, not * wildcard) ── */
+body,
+.theme-transition,
+section,
+footer,
+nav,
+header,
+main,
+aside,
+article,
+.card,
+.bg-white,
+.bg-gray-50,
+.bg-gray-100,
+[class*="bg-slate"],
+[class*="bg-gray"],
+[class*="border-gray"],
+[class*="border-slate"],
+[class*="text-gray"],
+[class*="text-slate"] {
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base);
 }
 
-/* Dark mode specific styles */
-.dark {
-  color-scheme: dark;
+/* ─── Orange Glow Button Utility ───────────────────── */
+.btn-orange-glow {
+  background: linear-gradient(135deg, #ff7a18 0%, #ff5500 100%);
+  box-shadow: 0 0 16px rgba(255, 122, 24, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-orange-glow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 28px rgba(255, 122, 24, 0.75);
 }
 
-.dark * {
-  border-color: #64748b; /* slate-500 for borders */
+.btn-outline-orange {
+  border: 2px solid #ff7a18;
+  color: inherit;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-outline-orange:hover {
+  background: #ff7a18;
+  color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 14px rgba(255, 122, 24, 0.45);
 }
 
-/* Custom scrollbar for dark mode */
-.dark ::-webkit-scrollbar {
-  width: 8px;
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #a0aec0; }
+
+.dark ::-webkit-scrollbar-track { background: #1e293b; }
+.dark ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* ─── Skill Badge Grid ───────────────────────────────── */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (min-width: 480px) {
+  .skill-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 768px) {
+  .skill-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-.dark ::-webkit-scrollbar-track {
-  background: #334155; /* slate-700 */
+.skill-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  cursor: default;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+.dark .skill-badge {
+  background: #1e293b;
+  border-color: #334155;
+}
+.skill-badge:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 122, 24, 0.2);
+  border-color: #ff7a18;
+  background: #fff7ed;
+}
+.dark .skill-badge:hover {
+  background: #1c1917;
+  border-color: #ff7a18;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #64748b; /* slate-500 */
-  border-radius: 4px;
+/* ─── Project Card Hover ─────────────────────────────── */
+.project-card {
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
+    border-color 0.3s ease-in-out !important;
+}
+.project-card:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 16px 40px rgba(255, 122, 24, 0.18), 0 4px 16px rgba(0,0,0,0.12);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; /* slate-400 */
+/* ─── Navbar Active Link ─────────────────────────────── */
+.navbar-link.active,
+.navbar-link.active-link {
+  color: #ff7a18 !important;
+}
+.navbar-link.active::after,
+.navbar-link.active-link::after {
+  width: 100% !important;
 }
 
-/* Light mode scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e0;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a0aec0;
-}
-
+/* ─── Misc ───────────────────────────────────────────── */
 @keyframes bounce-slow {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: translateY(0);
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
+  0%, 100% { transform: translateY(-6px); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+  50%       { transform: translateY(0);    animation-timing-function: cubic-bezier(0,0,0.2,1); }
 }
+.animate-bounce-slow { animation: bounce-slow 2s infinite; }
 
-.animate-bounce-slow {
-  animation: bounce-slow 2s infinite;
-}
-
-/* Theme-aware utility classes */
-.theme-bg {
-  @apply bg-white dark:bg-slate-600;
-}
-
-.theme-text {
-  @apply text-gray-900 dark:text-white;
-}
-
-.theme-border {
-  @apply border-gray-200 dark:border-slate-500;
-}
-
-.theme-card {
-  @apply bg-white dark:bg-slate-700 shadow-lg dark:shadow-slate-900/20;
-}
-
-/* Remove the specific navbar background color to allow for dynamic styling */
-/* .navbar {
-  background-color: rgb(17, 140, 119);
-} */
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-text-main);
-}
-
-a {
-  color: var(--color-text-main);
-  text-decoration: none;
-}
+h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', 'Inter', sans-serif; }
