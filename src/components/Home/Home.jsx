@@ -2,7 +2,7 @@ import React from "react";
 import { IoMdDownload } from "react-icons/io";
 import { ReactTyped } from "react-typed";
 import { FaProjectDiagram, FaLayerGroup, FaCode } from "react-icons/fa";
-import resumePDF from '../../assets/Your_Resume.pdf';
+import resumePDF from '../../assets/Resume.pdf';
 import developer from '../../assets/Side_img.png';
 
 const highlights = [
