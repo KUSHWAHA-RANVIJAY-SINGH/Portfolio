@@ -38,6 +38,17 @@ const LaptopLogo = () => (
   </svg>
 );
 
+const DoctorLogo = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+    <circle cx="40" cy="40" r="40" fill="#0d9488"/>
+    {/* Stylized White Heart */}
+    <path d="M40 58 C40 58 22 46 22 33 C22 23 29 17 38 20 C40 21 40 21 40 21 C40 21 40 21 42 20 C51 17 58 23 58 33 C58 46 40 58 40 58 Z" fill="#ffffff"/>
+    {/* Teal Medical Cross inside the Heart */}
+    <rect x="38" y="26" width="4" height="12" rx="1" fill="#0d9488"/>
+    <rect x="34" y="30" width="12" height="4" rx="1" fill="#0d9488"/>
+  </svg>
+);
+
 /* ─── Chip list component ─────────────────────────────────────── */
 const ChipList = ({ chips }) => (
   <div className="flex flex-wrap gap-2 justify-center mb-4">
@@ -65,9 +76,25 @@ const ProjectLogo = ({ logo, SvgComponent, title }) => (
 /* ─── Project data ────────────────────────────────────────────── */
 function Project() {
   const cardItem = [
-    /* 1 ── UtsavMate */
+    /* 1 ── Doctor Website */
     {
       id: 0,
+      SvgLogo: DoctorLogo,
+      title: "MediCare Clinic (Doctor Website)",
+      chips: T.mern,
+      bullets: [
+        "Full-stack doctor appointment booking and patient record management system",
+        "Interactive portal for online appointment booking and service description displays",
+        "Responsive, modern user interface featuring a customized navigation menu and carousels",
+        "Secure administrator dashboard for scheduling controls and updates",
+      ],
+      github: "https://github.com/KUSHWAHA-RANVIJAY-SINGH/Doctor_Website",
+      Live_link: "https://doctor-website-kappa.vercel.app/",
+    },
+
+    /* 2 ── UtsavMate */
+    {
+      id: 1,
       logo: Utsavmate,
       title: "UtsavMate (Wedding Marketplace)",
       chips: T.mern,
@@ -81,9 +108,9 @@ function Project() {
       Live_link: "https://utsavmate.in/",
     },
 
-    /* 2 ── Gym Management Website */
+    /* 3 ── Gym Management Website */
     {
-      id: 1,
+      id: 2,
       SvgLogo: GymLogo,
       title: "Gym Management Website",
       chips: T.gym,
@@ -96,9 +123,9 @@ function Project() {
       Live_link: "https://gymdemo.hitechcrest.com/",
     },
 
-    /* 3 ── Laptop E-commerce Platform */
+    /* 4 ── Laptop E-commerce Platform */
     {
-      id: 2,
+      id: 3,
       SvgLogo: LaptopLogo,
       title: "Laptop E-commerce Platform",
       chips: T.laptop,
@@ -111,9 +138,9 @@ function Project() {
       Live_link: "https://demo.hitechcrest.com/",
     },
 
-    /* 4 ── Vehicle Rental System */
+    /* 5 ── Vehicle Rental System */
     {
-      id: 3,
+      id: 4,
       logo: Vehicle_logo,
       title: "Vehicle Rental System",
       chips: T.vehicle,
@@ -128,9 +155,9 @@ function Project() {
       Live_link: "https://vehicle-rental-system-wheat-six.vercel.app/",
     },
 
-    /* 5 ── Inventory Management System */
+    /* 6 ── Inventory Management System */
     {
-      id: 4,
+      id: 5,
       logo: Inventory,
       title: "Inventory Management System",
       chips: T.inventory,
@@ -145,9 +172,9 @@ function Project() {
       Live_link: "https://invsys-frontend.vercel.app/",
     },
 
-    /* 6 ── Real Time Chat Application */
+    /* 7 ── Real Time Chat Application */
     {
-      id: 5,
+      id: 6,
       logo: Logo,
       title: "Real Time Chat Application",
       chips: T.chat,

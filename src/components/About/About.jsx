@@ -6,6 +6,7 @@ import {
   SiJavascript, SiTailwindcss, SiGit, SiGithub,
   SiPostman, SiVercel, SiNetlify, SiAmazons3,
   SiHtml5, SiCss3,
+  SiDocker, SiRedis,
 } from 'react-icons/si'
 import { FaKey, FaServer } from 'react-icons/fa'
 
@@ -45,6 +46,7 @@ const skillCategories = [
     skills: [
       { icon: <SiMongodb  className="text-green-600"   />, label: 'MongoDB'  },
       { icon: <SiMongoose className="text-red-500"     />, label: 'Mongoose' },
+      { icon: <SiRedis    className="text-red-600"     />, label: 'Redis'    },
     ],
   },
   {
@@ -59,6 +61,7 @@ const skillCategories = [
       { icon: <SiVercel    className="text-gray-800 dark:text-white" />, label: 'Vercel' },
       { icon: <SiNetlify   className="text-teal-500"              />, label: 'Netlify' },
       { icon: <SiAmazons3   className="text-yellow-500"            />, label: 'AWS S3'  },
+      { icon: <SiDocker    className="text-sky-500"               />, label: 'Docker'  },
     ],
   },
 ]
